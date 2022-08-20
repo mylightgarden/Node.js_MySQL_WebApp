@@ -1,0 +1,93 @@
+<html>
+    <body>
+        <div class="sidebar">
+                <h2 id="sidebar_logo">LuluOrange</h2>
+                <a href="index.html">Welcome</a>
+                <a href="/activities_manage">Manage Activities</a>
+                <a href="/customers_manage">Manage Customers</a>
+                <a href="/genders_manage">Manage Genders</a>
+                <a href="/orders_manage">Manage Orders</a>
+                <a href="/orders_products_manage">Manage Orders_Products</a>
+                <a href="/products_manage">Manage Products</a>
+                <a href="/stores_manage">Manage Stores</a>
+        </div>
+        <div class="container-fluid">
+            <div class="content">
+                <h1>Manage Products</h1>
+                <br>
+
+                <form id='filter_product' action='' method=''>
+                <!--- this form does not submit directly, the button handles all the interaction with backend -->
+                    <label>Filter Product by Activity:</label>
+                    <br>
+                    <select id='activity_filter' name="activity">
+                        <option>select activity</option> 
+                        {{#each activities}}
+                        <option value="{{activity_id}}">{{activity_description}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="button" value="Filter" class="btn btn-primary" onclick="filterProductByActivity()">
+                </form>
+                <br>
+
+                <h2>Products List</h2>
+                <table class="table">
+                    <thead> 
+                        <th scope="col">product_id</th>
+                        <th scope="col">product_name</th>
+                        <th scope="col">product_description</th>
+                        <th scope="col">gender_id</th>
+                        <th scope="col">activity_id</th>
+                        <th scope="col">product_price</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </thead> 
+                    <tbody>
+                        {{#each products}} 
+                        <tr> 
+                            <td scope="row">{{product_id}}</td>
+                            <td>{{product_name}}</td>
+                            <td>{{product_description}}</td>
+                            <td>{{gender_id}}</td>
+                            <td>{{activity_id}}</td>
+                            <td>{{product_price}}</td>
+                            <td><a href="/products_manage/{{product_id}}">Edit</a></td>
+                            <td><button class="button_del" onclick="deleteProduct({{product_id}})">Delete</button></td>
+                        </tr> 
+                        {{/each}} 
+                    </tbody>
+                </table>
+                <br>
+                <h2>Add Product</h2>
+
+                <form id="addproduct" action="/products_manage" method="post">
+                    <div class="form-group">
+                            <label for="product_name">product_name</label>
+                            <input type="text" class="form-control" id="product_name" name="product_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="product_description">product_description</label>
+                            <input type="text" class="form-control" id="product_description" name="product_description">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender_id">gender_id (optional)</label>
+                            <input type="text" class="form-control" id="gender_id" name="gender_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="store_city">activity_id</label>
+                            <input type="text" class="form-control" id="activity_id" name="activity_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="product_price">product_price</label>
+                            <input type="text" class="form-control" id="product_price" name="product_price">
+                        </div>
+                        <br>
+                        <div>
+                            <button type="submit" class="button_sub">Add Product</button>
+                        </div>
+                </form>
+                <br/>
+            </div>
+        </div>
+    </body>
+</html>

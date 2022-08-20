@@ -1,0 +1,32 @@
+<html>
+
+<body>
+    <div class="sidebar">
+        <h2 id="sidebar_logo">LuluOrange</h2>
+        <a href="/index.html">Welcome</a>
+        <a href="/activities_manage">Manage Activities</a>
+        <a href="/customers_manage">Manage Customers</a>
+        <a href="/genders_manage">Manage Genders</a>
+        <a href="/orders_manage">Manage Orders</a>
+        <a href="/orders_products_manage">Manage Orders_Products</a>
+        <a href="/products_manage">Manage Products</a>
+        <a href="/stores_manage/">Manage Stores</a>
+    </div>
+
+    <div class="container-fluid">
+        <div class="content">
+            <h1>Manage Genders</h1>
+            <br>
+            <br>
+            <h3>Update: {{gender.gender}}</h3>
+                <form id="update-gender" action="/genders_manage" method="post">
+                    Gender: <input type="text" class="form-control" name="gender" value="{{gender.gender}}"><br>                  
+                </form>
+                <br>
+                <button class="button_sub" onclick="updateGender({{gender.gender_id}})">Update</button>
+        </div>
+    </div>    
+</body>
+</html>
+
+

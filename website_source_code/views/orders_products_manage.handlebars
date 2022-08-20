@@ -1,0 +1,80 @@
+<html>
+    <body>
+        <div class="sidebar">
+                <h2 id="sidebar_logo">LuluOrange</h2>
+                <a href="index.html">Welcome</a>
+                <a href="/activities_manage">Manage Activities</a>
+                <a href="/customers_manage">Manage Customers</a>
+                <a href="/genders_manage">Manage Genders</a>
+                <a href="/orders_manage">Manage Orders</a>
+                <a href="/orders_products_manage">Manage Orders_Products</a>
+                <a href="/products_manage">Manage Products</a>
+                <a href="/stores_manage">Manage Stores</a>
+        </div>
+        <div class="container-fluid">
+            <div class="content">
+                <h1>Manage Orders_Products</h1>
+                <br>
+
+                <h2>Orders_Products List</h2>
+                <table class="table">
+                    <thead> 
+                        <th scope="col">order_id</th>
+                        <th scope="col">product_id</th>
+                        <th scope="col">quantity</th>
+                        <th scope="col">selling_price</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </thead> 
+                    <tbody>
+                        {{#each orders_products}} 
+                        <tr> 
+                            <td scope="row">{{order_id}}</td>
+                            <td>{{product_id}}</td>
+                            <td>{{quantity}}</td>
+                            <td>{{selling_price}}</td>
+                            <td><a href="/orders_products_manage/{{order_id}}_{{product_id}}">Edit</a></td>
+                            <td><button class="button_del" onclick="deleteOrderProduct({{order_id}}, {{product_id}})">Delete</button></td>
+                        </tr> 
+                        {{/each}} 
+                    </tbody>
+                </table>
+                <br>
+
+                <h2>Add Order_Product</h2>
+
+                <form id="addorders_products" action="/orders_products_manage" method="post">
+                  
+                        Choose order_id<br/>
+                        <select name="order_id" class="form-control" required>
+                            <option>select order</option>                                
+                            {{#each orders}}
+                                <option value ="{{order_id}}">{{order_id}}</option>
+                            {{/each}}
+                        </select>
+                        <br/>
+                        Choose product_id<br/>
+                        <select name="product_id" class="form-control" required>  
+                            <option>select product</option>     
+                            {{#each products}}
+                                <option value ="{{product_id}}">{{product_name}}</option>
+                            {{/each}}
+                        </select>
+                        <br>
+                        <div class="form-group">
+                            <label for="quantity">quantity</label>
+                            <input type="text" class="form-control" id="quantity" name="quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="selling_price">selling_price</label>
+                            <input type="text" class="form-control" id="selling_price" name="selling_price">
+                        </div>
+                    
+                    <br/>
+                    <button type="submit" class="button_sub">Add Order_Product</button>
+                </form>
+                <br/>
+            </div>
+        </div>
+    </body>
+</html>
